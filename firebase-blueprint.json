@@ -1,0 +1,115 @@
+{
+  "entities": {
+    "Project": {
+      "title": "Project",
+      "description": "A user-created app or website project containing code files and metadata",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "The unique document identifier of the project"
+        },
+        "userId": {
+          "type": "string",
+          "description": "The UID of the user who owns this project"
+        },
+        "title": {
+          "type": "string",
+          "description": "Title or name of the project"
+        },
+        "description": {
+          "type": "string",
+          "description": "Short description of what the project builds or does"
+        },
+        "htmlContent": {
+          "type": "string",
+          "description": "HTML markup for the web application"
+        },
+        "cssContent": {
+          "type": "string",
+          "description": "CSS stylesheet for styling"
+        },
+        "jsContent": {
+          "type": "string",
+          "description": "JavaScript logic for functionality"
+        },
+        "activeLanguage": {
+          "type": "string",
+          "description": "Primary workspace target such as web, python, or java"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Server timestamp of creation. Clients submit FieldValue.serverTimestamp()"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Server timestamp of last update. Clients submit FieldValue.serverTimestamp()"
+        }
+      },
+      "required": [
+        "userId",
+        "title",
+        "htmlContent",
+        "cssContent",
+        "jsContent",
+        "createdAt",
+        "updatedAt"
+      ]
+    },
+    "ChatMessage": {
+      "title": "ChatMessage",
+      "description": "A conversational message exchanged between the user and CodeForge AI",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "The unique document identifier of the message"
+        },
+        "userId": {
+          "type": "string",
+          "description": "The UID of the user owning this conversation"
+        },
+        "projectId": {
+          "type": "string",
+          "description": "The parent project ID"
+        },
+        "sender": {
+          "type": "string",
+          "description": "Sender role: user or model"
+        },
+        "content": {
+          "type": "string",
+          "description": "Message body text"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Server timestamp of creation. Clients submit FieldValue.serverTimestamp()"
+        }
+      },
+      "required": [
+        "userId",
+        "projectId",
+        "sender",
+        "content",
+        "createdAt"
+      ]
+    }
+  },
+  "firestore": {
+    "/users/{userId}/projects/{projectId}": {
+      "schema": {
+        "$ref": "#/entities/Project"
+      },
+      "description": "Stores user authored code projects and web files"
+    },
+    "/users/{userId}/projects/{projectId}/messages/{messageId}": {
+      "schema": {
+        "$ref": "#/entities/ChatMessage"
+      },
+      "description": "Stores conversation history for a specific project"
+    }
+  }
+}

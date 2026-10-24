@@ -1,0 +1,6 @@
+{
+  "name": "CodeForge AI",
+  "description": "Conversational AI app and website builder with real-time web preview, multi-language coding, and live console",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
